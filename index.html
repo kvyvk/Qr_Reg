@@ -6,99 +6,122 @@
     <title>Product Registration</title>
     <style>
         body {
-            font-family: Arial, sans-serif;
-            background-color: #f4f4f4;
             margin: 0;
             padding: 0;
+            font-family: Arial, sans-serif;
+            background-color: #f9f9f9;
         }
-
+        
         .container {
             width: 400px;
-            margin: auto;
-            padding: 20px;
+            margin: 0 auto;
+            margin-top: 10px;
             background-color: #fff;
-            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
             border-radius: 10px;
-            margin-top: 50px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            padding: 30px;
         }
-
-        h2 {
-            text-align: center;
+        
+        .container h2 {
+            font-size: 24px;
             margin-bottom: 20px;
-            color: #3498db;
+            color: #333;
+            text-align: center;
         }
-
-        input[type="text"],
-        input[type="email"],
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 5px;
+            color: #555;
+        }
+        
+        input,
         select,
         textarea {
             width: 100%;
             padding: 10px;
-            margin-bottom: 10px;
-            border: 1px solid #ccc;
+            border: 1px solid #ddd;
             border-radius: 5px;
             font-size: 16px;
         }
-
+        
         select {
-            appearance: none;
-            padding-right: 30px;
-            background: url('arrow-down.svg') no-repeat right center;
-            background-size: 20px;
+            height: 40px;
         }
-
-        input[type="submit"] {
-            width: 100%;
-            padding: 10px;
-            background-color: #3498db;
+        
+        textarea {
+            resize: vertical;
+            height: 100px;
+        }
+        
+        .submit-btn {
+            background-color: #007bff;
             color: #fff;
             border: none;
             border-radius: 5px;
+            padding: 10px 20px;
             cursor: pointer;
             font-size: 16px;
-            transition: background-color 0.2s;
+            transition: background-color 0.3s;
+            margin-top: 10px;
         }
-
-        input[type="submit"]:hover {
-            background-color: #2980b9;
-        }
-
-        #qrcode_input {
-            margin-bottom: 20px;
+        
+        .submit-btn:hover {
+            background-color: #0056b3;
         }
     </style>
-    <script>
-        function fillFormFromQRCode() {
-            const qrcodeInput = document.getElementById("qrcode_input");
-            const qrData = JSON.parse(qrcodeInput.value);
-
-            document.getElementsByName("product_name")[0].value = qrData.product_name;
-            document.getElementsByName("serial_number")[0].value = qrData.serial_number;
-            document.getElementsByName("user_email")[0].value = qrData.user_email;
-            document.getElementsByName("product_category")[0].value = qrData.product_category;
-            document.getElementsByName("product_description")[0].value = qrData.product_description;
-       
-            window.location.href = qrData.link;
+     <script>
+        function fillFormFromQueryParams() {
+            const queryParams = new URLSearchParams(window.location.search);
+            
+            document.getElementById("product_name").value = queryParams.get("product_name");
+            document.getElementById("serial_number").value = queryParams.get("serial_number");
+            document.getElementById("user_email").value = queryParams.get("user_email");
+            document.getElementById("product_category").value = queryParams.get("product_category");
+            document.getElementById("product_description").value = queryParams.get("product_description");
         }
     </script>
 </head>
-<body>
+<body onload="fillFormFromQueryParams()">
     <div class="container">
         <h2>Product Registration</h2>
-        <form action="process_product_registration.php" method="post">
-            <input type="text" id="qrcode_input" placeholder="Scan QR Code" onchange="fillFormFromQRCode()">
-            <input type="text" name="product_name" placeholder="Product Name" required>
-            <input type="text" name="serial_number" placeholder="Serial Number" required>
-            <input type="email" name="user_email" placeholder="Your Email" required>
-            <select name="product_category" required>
-                <option value="" disabled selected>Select Product Category</option>
-                <option value="Electronics">Electronics</option>
-                <option value="Appliances">Appliances</option>
-                <option value="Clothing">Clothing</option>
-           
-            </select>
-            <textarea name="product_description" placeholder="Product Description" rows="4"></textarea>
-            <input type="submit" value="Register Product">
+        <form action="" method="post">
+            <div class="form-group">
+                <label for="product_name">Product Name</label>
+                <input type="text" id="product_name" name="product_name" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="serial_number">Serial Number</label>
+                <input type="text" id="serial_number" name="serial_number" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="user_email">Your Email</label>
+                <input type="email" id="user_email" name="user_email" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="product_category">Product Category</label>
+                <select id="product_category" name="product_category" required>
+                    <option value="" disabled selected>Select Product Category</option>
+                    <option value="Electronics">Electronics</option>
+                    <option value="Appliances">Appliances</option>
+                    <option value="Clothing">Clothing</option>
+                </select>
+            </div>
+            
+            <div class="form-group">
+                <label for="product_description">Product Description</label>
+                <textarea id="product_description" name="product_description"></textarea>
+            </div>
+            
+            <button type="submit" class="submit-btn">Register Product</button>
         </form>
     </div>
 </body>
