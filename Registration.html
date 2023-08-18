@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Registration</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            width: 400px;
+            margin: auto;
+            padding: 20px;
+            background-color: #fff;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+            margin-top: 50px;
+        }
+
+        h2 {
+            text-align: center;
+            margin-bottom: 20px;
+            color: #3498db;
+        }
+
+        input[type="text"],
+        input[type="email"],
+        select,
+        textarea {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+        select {
+            appearance: none;
+            padding-right: 30px;
+            background: url('arrow-down.svg') no-repeat right center;
+            background-size: 20px;
+        }
+
+        input[type="submit"] {
+            width: 100%;
+            padding: 10px;
+            background-color: #3498db;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.2s;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #2980b9;
+        }
+
+        #qrcode_input {
+            margin-bottom: 20px;
+        }
+    </style>
+    <script>
+        function fillFormFromQRCode() {
+            const qrcodeInput = document.getElementById("qrcode_input");
+            const qrData = JSON.parse(qrcodeInput.value);
+
+            document.getElementsByName("product_name")[0].value = qrData.product_name;
+            document.getElementsByName("serial_number")[0].value = qrData.serial_number;
+            document.getElementsByName("user_email")[0].value = qrData.user_email;
+            document.getElementsByName("product_category")[0].value = qrData.product_category;
+            document.getElementsByName("product_description")[0].value = qrData.product_description;
+       
+            window.location.href = qrData.link;
+        }
+    </script>
+</head>
+<body>
+    <div class="container">
+        <h2>Product Registration</h2>
+        <form action="process_product_registration.php" method="post">
+            <input type="text" id="qrcode_input" placeholder="Scan QR Code" onchange="fillFormFromQRCode()">
+            <input type="text" name="product_name" placeholder="Product Name" required>
+            <input type="text" name="serial_number" placeholder="Serial Number" required>
+            <input type="email" name="user_email" placeholder="Your Email" required>
+            <select name="product_category" required>
+                <option value="" disabled selected>Select Product Category</option>
+                <option value="Electronics">Electronics</option>
+                <option value="Appliances">Appliances</option>
+                <option value="Clothing">Clothing</option>
+           
+            </select>
+            <textarea name="product_description" placeholder="Product Description" rows="4"></textarea>
+            <input type="submit" value="Register Product">
+        </form>
+    </div>
+</body>
+</html>
