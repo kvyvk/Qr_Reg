@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -11,9 +12,9 @@
             font-family: Arial, sans-serif;
             background-color: #f9f9f9;
         }
-        
+
         .container {
-            width: 400px;
+            width: 600px;
             margin: 0 auto;
             margin-top: 10px;
             background-color: #fff;
@@ -21,25 +22,25 @@
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
             padding: 30px;
         }
-        
+
         .container h2 {
             font-size: 24px;
             margin-bottom: 20px;
             color: #333;
             text-align: center;
         }
-        
+
         .form-group {
             margin-bottom: 20px;
         }
-        
+
         label {
             display: block;
             font-weight: bold;
             margin-bottom: 5px;
             color: #555;
         }
-        
+
         input,
         select,
         textarea {
@@ -49,16 +50,16 @@
             border-radius: 5px;
             font-size: 16px;
         }
-        
+
         select {
             height: 40px;
         }
-        
+
         textarea {
             resize: vertical;
             height: 100px;
         }
-        
+
         .submit-btn {
             background-color: #007bff;
             color: #fff;
@@ -70,59 +71,80 @@
             transition: background-color 0.3s;
             margin-top: 10px;
         }
-        
+
         .submit-btn:hover {
             background-color: #0056b3;
         }
     </style>
-     <script>
+    <script>
         function fillFormFromQueryParams() {
             const queryParams = new URLSearchParams(window.location.search);
-            
+
             document.getElementById("product_name").value = queryParams.get("product_name");
             document.getElementById("serial_number").value = queryParams.get("serial_number");
-            document.getElementById("user_email").value = queryParams.get("user_email");
+            document.getElementById("product_details").value = queryParams.get("product_details");
             document.getElementById("product_category").value = queryParams.get("product_category");
-            document.getElementById("product_description").value = queryParams.get("product_description");
+            document.getElementById("dealer_details").value = queryParams.get("dealer_details");
+            document.getElementById("product_rate").value = queryParams.get("product_rate");
+            document.getElementById("sale_date").value = queryParams.get("sale_date");
+            document.getElementById("user_name").value = queryParams.get("user_name");
+            document.getElementById("user_phone").value = queryParams.get("user_phone");
+
         }
     </script>
 </head>
+
 <body onload="fillFormFromQueryParams()">
     <div class="container">
         <h2>Product Registration</h2>
-        <form action="" method="post">
-            <div class="form-group">
-                <label for="product_name">Product Name</label>
-                <input type="text" id="product_name" name="product_name" required>
-            </div>
-            
-            <div class="form-group">
-                <label for="serial_number">Serial Number</label>
-                <input type="text" id="serial_number" name="serial_number" required>
-            </div>
-            
-            <div class="form-group">
-                <label for="user_email">Your Email</label>
-                <input type="email" id="user_email" name="user_email" required>
-            </div>
-            
-            <div class="form-group">
-                <label for="product_category">Product Category</label>
-                <select id="product_category" name="product_category" required>
-                    <option value="" disabled selected>Select Product Category</option>
-                    <option value="Electronics">Electronics</option>
-                    <option value="Appliances">Appliances</option>
-                    <option value="Clothing">Clothing</option>
-                </select>
-            </div>
-            
-            <div class="form-group">
-                <label for="product_description">Product Description</label>
-                <textarea id="product_description" name="product_description"></textarea>
-            </div>
-            
-            <button type="submit" class="submit-btn">Register Product</button>
+        <div class="form-group">
+            <label for="product_name">Product Name</label>
+            <input type="text" id="product_name" name="product_name" required>
+        </div>
+
+        <div class="form-group">
+            <label for="serial_number">Serial Number</label>
+            <input type="text" id="serial_number" name="serial_number" required>
+        </div>
+
+        <div class="form-group">
+            <label for="product_details">Product Details</label>
+            <textarea id="product_details" name="product_details" required></textarea>
+        </div>
+
+        <div class="form-group">
+            <label for="product_category">Product Category</label>
+            <input id="product_category" name="product_category" required>
+        </div>
+
+        <div class="form-group">
+            <label for="dealer_details">Dealer Details</label>
+            <textarea id="dealer_details" name="dealer_details" required></textarea>
+        </div>
+
+        <div class="form-group">
+            <label for="product_rate">Product Rate</label>
+            <input type="number" id="product_rate" name="product_rate" required>
+        </div>
+
+        <div class="form-group">
+            <label for="sale_date">Date of Sale</label>
+            <input type="date" id="sale_date" name="sale_date" required>
+        </div>
+
+        <div class="form-group">
+            <label for="user_name">User Name</label>
+            <input type="text" id="user_name" name="user_name" required>
+        </div>
+
+        <div class="form-group">
+            <label for="user_phone">Phone Number</label>
+            <input type="tel" id="user_phone" name="user_phone" required>
+        </div>
+
+        <button type="submit" class="submit-btn">Register Product</button>
         </form>
     </div>
 </body>
+
 </html>
