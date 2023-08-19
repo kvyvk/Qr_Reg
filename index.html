@@ -6,27 +6,29 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Product Registration</title>
     <style>
-        .body {
+        body {
             margin: 0;
             padding: 0;
             font-family: Arial, sans-serif;
-            background-color: #f9f9f9;
+            background-color: hwb(87 93% 3%);
         }
 
         .container {
             width: 600px;
             margin: 0 auto;
-            margin-top: 10px;
-            background-color: #fff;
+            margin-top: 5px;
+            background-color: #65868b;
             border-radius: 10px;
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
             padding: 30px;
+          
         }
 
         .container h2 {
             font-size: 24px;
+            margin-top:5px;
             margin-bottom: 20px;
-            color: #333;
+            color: #faeaea;
             text-align: center;
         }
 
@@ -46,7 +48,7 @@
         textarea {
             width: 100%;
             padding: 10px;
-            border: 1px solid #ddd;
+            border: 1px solid #f9fac8;
             border-radius: 5px;
             font-size: 16px;
         }
@@ -61,7 +63,7 @@
         }
 
         .submit-btn {
-            background-color: #007bff;
+            background-color: #0011ff;
             color: #fff;
             border: none;
             border-radius: 5px;
@@ -73,7 +75,7 @@
         }
 
         .upload-btn {
-            background-color: hsl(120, 94%, 50%);
+            background-color: rgb(0, 255, 76);
             color: #fff;
             border: none;
             border-radius: 5px;
@@ -86,15 +88,21 @@
         }
 
         .submit-btn:hover {
-            background-color: #0056b3;
+            background-color: hsl(241, 100%, 50%);
         }
 
         .card {
             background-color: #fff;
             border-radius: 10px;
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-            padding: 25px;
+            padding: 25px 35px 15px 25px ;
+
             margin-bottom: 20px;
+           
+        }
+        h3{
+            margin-top:5px;
+            
         }
     </style>
     <script>
@@ -113,15 +121,14 @@
         }
     </script>
     </style>
-    <!-- ... (your existing script) ... -->
+  
 </head>
 
 <body onload="fillFormFromQueryParams()">
     <div class="container">
         <h2>Product Registration</h2>
 
-        <!-- Product Details Card -->
-        <div class="card">
+        <div class="card" style="background-color: #f0c48b;">
             <h3>Product Details</h3>
             <div class="form-group">
                 <label for="product_name">Product Name</label>
@@ -145,11 +152,10 @@
 
         </div>
 
-        <!-- Dealer Details Card -->
-        <div class="card">
+        <div class="card" style="background-color: #d1b0f7;">
             <h3>Dealer Details</h3>
             <div class="form-group">
-                <label for="dealer_details">Dealer Details</label>
+                <label for="dealer_details">Dealer Desription</label>
                 <textarea id="dealer_details" name="dealer_details" required></textarea>
             </div>
 
@@ -164,8 +170,7 @@
             </div>
         </div>
 
-        <!-- User Details Card -->
-        <div class="card">
+        <div class="card" style="background-color: #f7a8ae;">
             <h3>User Details</h3>
             <div class="form-group">
                 <label for="user_name">User Name</label>
@@ -178,11 +183,9 @@
             </div>
         </div>
 
-        <!-- Upload Invoice Card -->
-        <div class="card">
+        <div class="card" style="background-color: #ffe6c6;">
             <h3>Upload Invoice</h3>
             <div class="form-group">
-                <!-- <label for="invoice">Upload Invoice:</label> -->
                 <input type="file" id="invoice" name="invoice" accept=".txt, .pdf, .doc, .docx">
                 <br>
                 <button type="submit" class="upload-btn">Upload</button>
